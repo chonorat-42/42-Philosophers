@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:24:59 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/28 15:05:44 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:54:22 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	nbr_error(int error)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (error == 1)
-		ft_putstr_fd("Philo number must be between 0 and 200.\n", 2);
+		ft_putstr_fd("Philo number must be between 1 and 200.\n", 2);
 	else if (error == 2)
 		ft_putstr_fd("Time cannot be set under 60ms.\n", 2);
 	else if (error == 3)

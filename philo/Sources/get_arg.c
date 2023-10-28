@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:40:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/28 15:10:44 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/28 23:54:02 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	store_data(t_data *data, int index, int arg_nbr)
 {
 	if (index == 1)
 	{
-		if (arg_nbr < 0 || arg_nbr > 200)
+		if (arg_nbr < 1 || arg_nbr > 200)
 			return (show_error(WRONG_NBR, 1), 0);
 		data->philo_nbr = arg_nbr;
 	}
