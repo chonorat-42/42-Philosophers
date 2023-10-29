@@ -10,7 +10,7 @@
 
 # Executables
 *.out
-philo
+philo/philo
 
 # Temp files
 *.swp
@@ -20,6 +20,3 @@ philo
 
 # VS_Code files
 .vscode/
-
-# valgrind
-valgrind_ignore_leaks.txt

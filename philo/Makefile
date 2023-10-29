@@ -33,7 +33,8 @@ FILES = philo\
 		Error/show_error\
 		Parsing/get_arg\
 		Utils/ft_atoi\
-		Utils/ft_putstr_fd
+		Utils/ft_putstr_fd\
+		Free/free_data
 SRCS = $(addsuffix .c, $(addprefix Sources/, $(FILES)))
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
 
@@ -44,6 +45,7 @@ $(NAME): $(OBJS)
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 	$(DIR) Objects Objects/Utils Objects/Error Objects/Parsing Objects/Init
+	$(DIR) Objects/Free
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 

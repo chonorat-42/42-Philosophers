@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/29 15:52:22 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:00:56 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define ARGC 1
 # define WRONG_ARG 2
 # define WRONG_NBR 3
+# define MALLOC 4
 
 # include <stdio.h>
 # include <unistd.h>
@@ -24,16 +25,27 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct	s_philo
+{
+	size_t			id;
+	int				fork;
+	pthread_mutex_t	fork_lock;
+	struct s_philo	*prev;
+	struct s_philo	*next;
+}					t_philo;
+
 typedef struct	s_data
 {
-	int	philo_nbr;
-	int	t_death;
-	int	t_eat;
-	int	t_sleep;
-	int	nbr_to_eat;
+	size_t	philo_nbr;
+	size_t	t_death;
+	size_t	t_eat;
+	size_t	t_sleep;
+	size_t	nbr_to_eat;
+	t_philo	*philo;
 }				t_data;
 
 void	init_data(t_data *data);
+int		create_table(t_data *data);
 
 int		get_arg(t_data *data, int argc, char **argv);
 
@@ -41,5 +53,7 @@ void	show_error(int type, int error);
 
 int		ft_atoi(const char *str);
 int		ft_putstr_fd(char *s, int fd);
+
+void	free_data(t_data *data);
 
 #endif
