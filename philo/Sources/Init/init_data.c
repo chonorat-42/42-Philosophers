@@ -56,4 +56,5 @@ void	init_data(t_data *data)
 	data->t_eat = 0;
 	data->t_sleep = 0;
 	data->nbr_to_eat = 0;
+	data->philo = NULL;
 }
