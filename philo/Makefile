@@ -29,8 +29,9 @@ DIR = @mkdir -p
 PRINT = @echo
 HEADER = Includes/philo.h
 FILES = philo\
-		show_error\
-		get_arg\
+		Init/init_data\
+		Error/show_error\
+		Parsing/get_arg\
 		Utils/ft_atoi\
 		Utils/ft_putstr_fd
 SRCS = $(addsuffix .c, $(addprefix Sources/, $(FILES)))
@@ -42,7 +43,7 @@ $(NAME): $(OBJS)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
-	$(DIR) Objects Objects/Utils
+	$(DIR) Objects Objects/Utils Objects/Error Objects/Parsing Objects/Init
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 
