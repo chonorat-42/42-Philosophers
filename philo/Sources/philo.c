@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:24:17 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/29 17:08:06 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:17:52 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	print_table(t_philo *philo, size_t nbr)
 	index = 0;
 	while (index < nbr)
 	{
-		printf("philo_id: (%zu)\n", philo->id);
+		printf("philo_id: (%zu)[%d]\n", philo->id, philo->group);
 		philo = philo->next;
 		index++;
 	}
@@ -27,7 +27,7 @@ static void	print_table(t_philo *philo, size_t nbr)
 	while (nbr > 0)
 	{
 		philo = philo->prev;
-		printf("philo_id: (%zu)\n", philo->id);
+		printf("philo_id: (%zu)[%d]\n", philo->id, philo->group);
 		nbr--;
 	}
 }

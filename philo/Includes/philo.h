@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/29 17:00:56 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:16:25 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 typedef struct	s_philo
 {
 	size_t			id;
+	int				group;
 	int				fork;
 	pthread_mutex_t	fork_lock;
 	struct s_philo	*prev;
@@ -36,12 +37,13 @@ typedef struct	s_philo
 
 typedef struct	s_data
 {
-	size_t	philo_nbr;
-	size_t	t_death;
-	size_t	t_eat;
-	size_t	t_sleep;
-	size_t	nbr_to_eat;
-	t_philo	*philo;
+	size_t			philo_nbr;
+	size_t			t_death;
+	size_t			t_eat;
+	size_t			t_sleep;
+	size_t			nbr_to_eat;
+	t_philo			*philo;
+	pthread_mutex_t	print;
 }				t_data;
 
 void	init_data(t_data *data);
