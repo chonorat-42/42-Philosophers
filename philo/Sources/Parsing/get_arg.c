@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:40:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/29 16:00:30 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:48:54 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	store_data(t_data *data, size_t index, int arg_nbr)
 	{
 		if (arg_nbr < 0)
 			return (show_error(WRONG_NBR, 3), 0);
-		data->nbr_to_eat = arg_nbr;
+		data->eat_count = arg_nbr;
 	}
 	return (1);
 }

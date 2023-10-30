@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/30 12:16:25 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/30 20:02:56 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,23 @@ typedef struct	s_philo
 	int				group;
 	int				fork;
 	pthread_mutex_t	fork_lock;
+	size_t			last_meal;
+	pthread_mutex_t	meal_lock;
 	struct s_philo	*prev;
 	struct s_philo	*next;
 }					t_philo;
 
 typedef struct	s_data
 {
+	useconds_t		start_time;
 	size_t			philo_nbr;
 	size_t			t_death;
 	size_t			t_eat;
 	size_t			t_sleep;
-	size_t			nbr_to_eat;
+	size_t			eat_count;
+	pthread_mutex_t	eat_lock;
+	int				death;
+	pthread_mutex_t	death_lock;
 	t_philo			*philo;
 	pthread_mutex_t	print;
 }				t_data;

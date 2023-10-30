@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/30 12:17:11 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/30 20:38:10 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,22 @@ int	create_table(t_data *data)
 	return (1);
 }
 
+static useconds_t	init_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_usec);
+}
+
 void	init_data(t_data *data)
 {
+	data->start_time = init_time();
 	data->philo_nbr = 0;
 	data->t_death = 0;
 	data->t_eat = 0;
 	data->t_sleep = 0;
-	data->nbr_to_eat = 0;
+	data->eat_count = 0;
+	data->death = 0;
 	data->philo = NULL;
 }

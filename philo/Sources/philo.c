@@ -6,17 +6,18 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:24:17 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/30 12:17:52 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/30 20:07:50 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	print_table(t_philo *philo, size_t nbr)
+static void	print_table(t_philo *philo, size_t nbr, useconds_t time)
 {
 	size_t	index;
 
 	index = 0;
+	printf("<%u>\n\n", time);
 	while (index < nbr)
 	{
 		printf("philo_id: (%zu)[%d]\n", philo->id, philo->group);
@@ -36,14 +37,14 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	init_data(&data);
 	if (argc == 5 || argc == 6)
 	{
+		init_data(&data);
 		if (!get_arg(&data, argc, argv))
 			return (EXIT_FAILURE);
 		if (!create_table(&data))
 			return (EXIT_FAILURE);
-		print_table(data.philo, data.philo_nbr);
+		print_table(data.philo, data.philo_nbr, data.start_time);
 		free_data(&data);
 	}
 	else
