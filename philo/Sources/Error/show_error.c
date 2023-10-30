@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:24:59 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/28 23:54:22 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:15:30 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,6 @@ void show_error(int type, int error)
 		ft_putstr_fd("Error\nWrong argument. Insert only numbers.\n", 2);
 	else if (type == WRONG_NBR)
 		nbr_error(error);
+	else if (type == MALLOC)
+		ft_putstr_fd("Error\nMalloc error.\n", 2);
 }

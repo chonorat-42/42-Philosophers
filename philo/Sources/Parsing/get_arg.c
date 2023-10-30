@@ -6,15 +6,15 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:40:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/28 23:54:02 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:00:30 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	only_digit(char *arg, int *arg_nbr)
+static int	only_digit(char *arg, size_t *arg_nbr)
 {
-	int	index;
+	size_t	index;
 
 	index = 0;
 	if (arg[index] == '-' || arg[index] == '+')
@@ -29,7 +29,7 @@ static int	only_digit(char *arg, int *arg_nbr)
 	return (1);
 }
 
-static int	store_data(t_data *data, int index, int arg_nbr)
+static int	store_data(t_data *data, size_t index, int arg_nbr)
 {
 	if (index == 1)
 	{
@@ -59,12 +59,12 @@ static int	store_data(t_data *data, int index, int arg_nbr)
 
 int	get_arg(t_data *data, int argc, char **argv)
 {
-	int	index;
-	int	arg_nbr;
+	size_t	index;
+	size_t	arg_nbr;
 
 	index = 1;
 	arg_nbr = 0;
-	while (index < argc)
+	while (index < (size_t)argc)
 	{
 		if (!only_digit(argv[index], &arg_nbr))
 			return (show_error(WRONG_ARG, 0), 0);
