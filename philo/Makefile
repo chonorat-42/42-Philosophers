@@ -30,8 +30,11 @@ PRINT = @echo
 HEADER = Includes/philo.h
 FILES = philo\
 		Init/init_data\
+		Init/get_time\
 		Error/show_error\
+		Execution/start_philo\
 		Parsing/get_arg\
+		Print/print_action\
 		Utils/ft_atoi\
 		Utils/ft_putstr_fd\
 		Free/free_data
@@ -45,7 +48,7 @@ $(NAME): $(OBJS)
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 	$(DIR) Objects Objects/Utils Objects/Error Objects/Parsing Objects/Init
-	$(DIR) Objects/Free
+	$(DIR) Objects/Free Objects/Print Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 
