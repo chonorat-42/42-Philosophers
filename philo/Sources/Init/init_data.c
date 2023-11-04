@@ -6,17 +6,18 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/01 15:32:11 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:58:15 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	init_philo(t_philo **philo, int id)
+static void	init_philo(t_data *data, t_philo **philo, int id)
 {
 	(*philo)->id = id;
 	(*philo)->group = id % 2;
 	(*philo)->fork = 1;
+	(*philo)->data = data;
 	(*philo)->prev = NULL;
 	(*philo)->next = NULL;
 }
@@ -31,7 +32,7 @@ int	create_table(t_data *data)
 	data->philo = malloc(sizeof(t_philo));
 	if (!data->philo)
 		return (show_error(MALLOC, 0), 0);
-	init_philo(&data->philo, index++);
+	init_philo(data, &data->philo, index++);
 	prev = data->philo;
 	temp = data->philo->next;
 	while (index <= data->philo_nbr)
@@ -39,7 +40,7 @@ int	create_table(t_data *data)
 		temp = malloc(sizeof(t_philo));
 		if (!temp)
 			return (show_error(MALLOC, 0), free_data(data), 0);
-		init_philo(&temp, index++);
+		init_philo(data, &temp, index++);
 		temp->prev = prev;
 		prev->next = temp;
 		prev = temp;

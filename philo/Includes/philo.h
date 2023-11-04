@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/01 16:38:00 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:56:54 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_philo
 	pthread_mutex_t	fork_lock;
 	size_t			last_meal;
 	pthread_mutex_t	meal_lock;
+	struct s_data	*data;
 	struct s_philo	*prev;
 	struct s_philo	*next;
 }					t_philo;
