@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:24:17 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/04 15:48:51 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:49:31 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char *argv[])
 			return (EXIT_FAILURE);
 		init_mutex(&data);
 		// print_table(data.philo, data.philo_nbr, data.start_time);
-		start_philo(&data);
+		philo_handler(&data);
 		free_data(&data);
 	}
 	else

@@ -31,12 +31,14 @@ HEADER = Includes/philo.h
 FILES = philo\
 		Init/init_data\
 		Init/get_time\
+		Action/eat_handler\
 		Error/show_error\
 		Execution/start_philo\
 		Parsing/get_arg\
 		Print/print_action\
 		Utils/ft_atoi\
 		Utils/ft_putstr_fd\
+		Utils/ft_usleep\
 		Free/free_data
 SRCS = $(addsuffix .c, $(addprefix Sources/, $(FILES)))
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
@@ -48,7 +50,7 @@ $(NAME): $(OBJS)
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 	$(DIR) Objects Objects/Utils Objects/Error Objects/Parsing Objects/Init
-	$(DIR) Objects/Free Objects/Print Objects/Execution
+	$(DIR) Objects/Free Objects/Print Objects/Execution Objects/Action
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 

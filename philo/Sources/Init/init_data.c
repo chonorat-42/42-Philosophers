@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/04 15:58:15 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:55:35 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 static void	init_philo(t_data *data, t_philo **philo, int id)
 {
 	(*philo)->id = id;
-	(*philo)->group = id % 2;
-	(*philo)->fork = 1;
+	(*philo)->alive = 1;
+	(*philo)->state = 0;
+	(*philo)->meal_count = 0;
+	(*philo)->last_meal = 0;
 	(*philo)->data = data;
 	(*philo)->prev = NULL;
 	(*philo)->next = NULL;
+	if (data->philo_nbr % 2 && (*philo)->id == data->philo_nbr)
+		(*philo)->group = 0;
+	else
+		(*philo)->group = id % 2;
 }
 
 int	create_table(t_data *data)
@@ -56,8 +62,6 @@ void	init_mutex(t_data *data)
 	t_philo	*philo;
 	size_t	index;
 
-	pthread_mutex_init(&data->eat_lock, NULL);
-	pthread_mutex_init(&data->death_lock, NULL);
 	pthread_mutex_init(&data->print, NULL);
 	philo = data->philo;
 	index = 1;
@@ -65,6 +69,8 @@ void	init_mutex(t_data *data)
 	{
 		pthread_mutex_init(&philo->fork_lock, NULL);
 		pthread_mutex_init(&philo->meal_lock, NULL);
+		pthread_mutex_init(&philo->life_lock, NULL);
+		pthread_mutex_init(&philo->mcount_lock, NULL);
 		philo = philo->next;
 		index++;
 	}
@@ -79,8 +85,6 @@ int	init_data(t_data *data)
 	data->t_death = 0;
 	data->t_eat = 0;
 	data->t_sleep = 0;
-	data->eat_count = 0;
-	data->death = 0;
 	data->philo = NULL;
 	return (1);
 }

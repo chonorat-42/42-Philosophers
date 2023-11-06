@@ -6,22 +6,22 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:09:44 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/04 17:10:32 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:25:55 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_action(t_data *data, useconds_t time, int id, int action)
+void	print_action(t_data *data, useconds_t time, size_t id, int action)
 {
 	pthread_mutex_lock(&data->print);
 	if (action == THINKING)
-		printf("%u %d is thinking\n", time, id);
+		printf("%u %ld is thinking\n", time, id);
 	else if (action == EATING)
-		printf("%u %d is eating\n", time, id);
+		printf("%u %ld is eating\n", time, id);
 	else if (action == SLEEPING)
-		printf("%u %d is sleeping\n", time, id);
+		printf("%u %ld is sleeping\n", time, id);
 	else if (action == FORK)
-		printf("%u %d has taken a fork\n", time, id);
+		printf("%u %ld has taken a fork\n", time, id);
 	pthread_mutex_unlock(&data->print);
 }
