@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/06 17:55:35 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:01:32 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static void	init_philo(t_data *data, t_philo **philo, int id)
 	(*philo)->data = data;
 	(*philo)->prev = NULL;
 	(*philo)->next = NULL;
-	if (data->philo_nbr % 2 && (*philo)->id == data->philo_nbr)
-		(*philo)->group = 0;
-	else
-		(*philo)->group = id % 2;
+	(*philo)->group = id % 2;
 }
 
 int	create_table(t_data *data)
