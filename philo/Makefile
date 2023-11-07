@@ -30,10 +30,17 @@ PRINT = @echo
 HEADER = Includes/philo.h
 FILES = philo\
 		Init/init_data\
-		Error/show_error\
+		Init/get_time\
+		Execution/eat_handler\
+		Execution/start_philo\
+		Execution/monitoring\
+		Execution/join_philo\
 		Parsing/get_arg\
+		Print/show_error\
+		Print/print_action\
 		Utils/ft_atoi\
 		Utils/ft_putstr_fd\
+		Utils/ft_usleep\
 		Free/free_data
 SRCS = $(addsuffix .c, $(addprefix Sources/, $(FILES)))
 OBJS = $(addsuffix .o, $(addprefix Objects/, $(FILES)))
@@ -44,8 +51,8 @@ $(NAME): $(OBJS)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
-	$(DIR) Objects Objects/Utils Objects/Error Objects/Parsing Objects/Init
-	$(DIR) Objects/Free
+	$(DIR) Objects Objects/Utils Objects/Parsing Objects/Init
+	$(DIR) Objects/Free Objects/Print Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 

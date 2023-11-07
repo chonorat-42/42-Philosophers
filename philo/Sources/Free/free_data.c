@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:16:35 by chonorat          #+#    #+#             */
-/*   Updated: 2023/10/29 16:24:48 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:04:13 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ static void	free_philo(t_philo **philo, size_t philo_nbr)
 	while (temp && index < philo_nbr)
 	{
 		next = temp->next;
+		pthread_mutex_destroy(&temp->fork_lock);
+		pthread_mutex_destroy(&temp->meal_lock);
+		pthread_mutex_destroy(&temp->mcount_lock);
 		free(temp);
 		temp = next;
 		index++;
@@ -34,4 +37,5 @@ void	free_data(t_data *data)
 {
 	if (data->philo)
 		free_philo(&data->philo, data->philo_nbr);
+	pthread_mutex_destroy(&data->print);
 }
