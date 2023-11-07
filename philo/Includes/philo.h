@@ -20,7 +20,7 @@
 # define MALLOC 4
 # define TIME 5
 
-//ACTION
+//STATE
 # define THINKING 1
 # define EATING 2
 # define SLEEPING 3
