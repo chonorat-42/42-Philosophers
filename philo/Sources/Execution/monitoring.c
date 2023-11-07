@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 22:03:20 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:33:37 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	check_death(t_data *data, t_philo *philo)
 	useconds_t	time;
 
 	time = get_time(data->start_time);
-	if ((time - philo->last_meal) >= data->t_death && philo->state != EATING)
+	if ((time - philo->last_meal) >= data->t_death && philo->state != EATING
+			&& end_prog(data))
 	{
 		pthread_mutex_lock(&data->stop_lock);
 		data->stop_prog = 1;
@@ -35,7 +36,7 @@ static void	*death_monitoring(void *arg)
 
 	data = (t_data *)arg;
 	philo = data->philo;
-	while (!data->stop_prog)
+	while (!end_prog(data))
 	{
 		if (check_death(data, philo))
 			break ;
@@ -74,7 +75,7 @@ static void	*meal_monitoring(void *arg)
 
 	data = (t_data *)arg;
 	philo = data->philo;
-	while (!data->stop_prog)
+	while (!end_prog(data))
 	{
 		has_eaten = 0;
 		if (check_meal(data, philo, &has_eaten))

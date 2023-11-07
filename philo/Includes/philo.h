@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 22:03:09 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:28:18 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void		show_error(int type, int error);
 int			ft_atoi(const char *str);
 int			ft_putstr_fd(char *s, int fd);
 void		ft_usleep(useconds_t sleep);
+int			end_prog(t_data *data);
 
 //FREE
 void		free_data(t_data *data);

@@ -6,11 +6,23 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 22:36:54 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:27:56 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	end_prog(t_data *data)
+{
+	int	end;
+
+	pthread_mutex_lock(&data->stop_lock);
+	end = data->stop_prog;
+	pthread_mutex_unlock(&data->stop_lock);
+	if (end)
+		return (1);
+	return (0);
+}
 
 static void	sleep_after_meal(t_philo *philo)
 {
@@ -20,7 +32,7 @@ static void	sleep_after_meal(t_philo *philo)
 	pthread_mutex_unlock(&philo->fork_lock);
 	pthread_mutex_unlock(&philo->next->fork_lock);
 	philo->meal_count++;
-	if (philo->data->stop_prog)
+	if (end_prog(philo->data))
 		return ;
 	philo->state = SLEEPING;
 	print_action(philo->data, time, philo->id, SLEEPING);
@@ -29,17 +41,17 @@ static void	sleep_after_meal(t_philo *philo)
 
 static int	get_fork(t_philo *philo)
 {
-	if (philo->data->stop_prog)
+	if (end_prog(philo->data))
 		return (0);
 	pthread_mutex_lock(&philo->fork_lock);
-	if (philo->data->stop_prog)
+	if (end_prog(philo->data))
 		return (pthread_mutex_unlock(&philo->fork_lock), 0);
 	print_action(philo->data, get_time(philo->data->start_time),
 		philo->id, FORK);
 	if (philo->data->philo_nbr < 2)
 		return (pthread_mutex_unlock(&philo->fork_lock), 0);
 	pthread_mutex_lock(&philo->next->fork_lock);
-	if (philo->data->stop_prog)
+	if (end_prog(philo->data))
 		return (0);
 	print_action(philo->data, get_time(philo->data->start_time),
 		philo->id, FORK);
