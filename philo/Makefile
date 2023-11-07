@@ -31,10 +31,12 @@ HEADER = Includes/philo.h
 FILES = philo\
 		Init/init_data\
 		Init/get_time\
-		Action/eat_handler\
-		Error/show_error\
+		Execution/eat_handler\
 		Execution/start_philo\
+		Execution/monitoring\
+		Execution/join_philo\
 		Parsing/get_arg\
+		Print/show_error\
 		Print/print_action\
 		Utils/ft_atoi\
 		Utils/ft_putstr_fd\
@@ -49,8 +51,8 @@ $(NAME): $(OBJS)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
-	$(DIR) Objects Objects/Utils Objects/Error Objects/Parsing Objects/Init
-	$(DIR) Objects/Free Objects/Print Objects/Execution Objects/Action
+	$(DIR) Objects Objects/Utils Objects/Parsing Objects/Init
+	$(DIR) Objects/Free Objects/Print Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
 	$(CC) -c $(CFLAGS) $< -o $@
 

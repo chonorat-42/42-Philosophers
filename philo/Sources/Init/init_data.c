@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/06 18:01:32 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:27:59 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	init_philo(t_data *data, t_philo **philo, int id)
 {
 	(*philo)->id = id;
+	(*philo)->group = id % 2;
 	(*philo)->alive = 1;
 	(*philo)->state = 0;
 	(*philo)->meal_count = 0;
@@ -22,7 +23,6 @@ static void	init_philo(t_data *data, t_philo **philo, int id)
 	(*philo)->data = data;
 	(*philo)->prev = NULL;
 	(*philo)->next = NULL;
-	(*philo)->group = id % 2;
 }
 
 int	create_table(t_data *data)
@@ -78,6 +78,7 @@ int	init_data(t_data *data)
 	data->start_time = init_time();
 	if (!data->start_time)
 		return (0);
+	data->stop_prog = 0;
 	data->philo_nbr = 0;
 	data->t_death = 0;
 	data->t_eat = 0;
