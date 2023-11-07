@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:16:35 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/06 16:53:21 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:04:13 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	free_philo(t_philo **philo, size_t philo_nbr)
 		pthread_mutex_destroy(&temp->fork_lock);
 		pthread_mutex_destroy(&temp->meal_lock);
 		pthread_mutex_destroy(&temp->mcount_lock);
-		pthread_mutex_destroy(&temp->life_lock);
 		free(temp);
 		temp = next;
 		index++;

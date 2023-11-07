@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 18:04:06 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:03:30 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	*philo_handler(void *arg)
 	philo->state = THINKING;
 	if (!philo->group)
 		ft_usleep(philo->data->t_eat - 10);
-	while (philo->alive && !philo->data->stop_prog)
+	while (!philo->data->stop_prog)
 	{
 		if (philo->group++)
 		{

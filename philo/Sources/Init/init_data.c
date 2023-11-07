@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 14:27:59 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:03:57 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	init_philo(t_data *data, t_philo **philo, int id)
 {
 	(*philo)->id = id;
 	(*philo)->group = id % 2;
-	(*philo)->alive = 1;
 	(*philo)->state = 0;
 	(*philo)->meal_count = 0;
 	(*philo)->last_meal = 0;
@@ -66,7 +65,6 @@ void	init_mutex(t_data *data)
 	{
 		pthread_mutex_init(&philo->fork_lock, NULL);
 		pthread_mutex_init(&philo->meal_lock, NULL);
-		pthread_mutex_init(&philo->life_lock, NULL);
 		pthread_mutex_init(&philo->mcount_lock, NULL);
 		philo = philo->next;
 		index++;

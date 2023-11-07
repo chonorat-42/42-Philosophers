@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 14:27:07 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:03:09 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ typedef struct	s_philo
 	size_t			id;
 	int				group;
 	int				state;
-	int				alive;
-	pthread_mutex_t	life_lock;
 	size_t			meal_count;
 	pthread_mutex_t	mcount_lock;
 	useconds_t		last_meal;
@@ -55,7 +53,8 @@ typedef struct	s_data
 {
 	int				stop_prog;
 	pthread_mutex_t	stop_lock;
-	pthread_t		monitoring;
+	pthread_t		death_monitoring;
+	pthread_t		meal_monitoring;
 	useconds_t		start_time;
 	size_t			philo_nbr;
 	size_t			t_death;
