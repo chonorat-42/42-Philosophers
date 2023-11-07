@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 22:03:20 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:59:17 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int	check_meal(t_data *data, t_philo *philo, size_t *has_eaten)
 		}
 		philo = philo->next;
 		index++;
+		usleep(1000);
 	}
 	return (0);
 }
@@ -79,6 +80,7 @@ static void	*meal_monitoring(void *arg)
 		has_eaten = 0;
 		if (check_meal(data, philo, &has_eaten))
 			break ;
+		usleep(1000);
 	}
 	return (NULL);
 }
