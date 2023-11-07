@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 17:56:41 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:04:06 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	*philo_handler(void *arg)
 		{
 			eat_handler(philo);
 			if (philo->data->stop_prog)
+				break ;
+			if (philo->data->philo_nbr < 2)
 				break ;
 			print_action(philo->data, get_time(philo->data->start_time),
 			philo->id, THINKING);
