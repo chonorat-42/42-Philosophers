@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 18:04:41 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:36:54 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	sleep_after_meal(t_philo *philo)
 	time = get_time(philo->data->start_time);
 	pthread_mutex_unlock(&philo->fork_lock);
 	pthread_mutex_unlock(&philo->next->fork_lock);
+	philo->meal_count++;
 	if (philo->data->stop_prog)
 		return ;
-	philo->meal_count++;
 	philo->state = SLEEPING;
 	print_action(philo->data, time, philo->id, SLEEPING);
 	ft_usleep(philo->data->t_sleep);
