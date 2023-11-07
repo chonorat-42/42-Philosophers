@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 23:27:56 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:13:38 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static int	get_fork(t_philo *philo)
 		return (pthread_mutex_unlock(&philo->fork_lock), 0);
 	pthread_mutex_lock(&philo->next->fork_lock);
 	if (end_prog(philo->data))
-		return (0);
+		return (pthread_mutex_unlock(&philo->fork_lock),
+			pthread_mutex_unlock(&philo->next->fork_lock), 0);
 	print_action(philo->data, get_time(philo->data->start_time),
 		philo->id, FORK);
 	return (1);
