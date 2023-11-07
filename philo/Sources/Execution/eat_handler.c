@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 15:31:02 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:40:31 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	sleep_after_meal(t_philo *philo)
 
 static int	get_fork(t_philo *philo)
 {
+	if (philo->data->stop_prog)
+		return (0);
 	pthread_mutex_lock(&philo->fork_lock);
 	if (philo->data->stop_prog)
 		return (pthread_mutex_unlock(&philo->fork_lock), 0);
@@ -36,8 +38,7 @@ static int	get_fork(t_philo *philo)
 		philo->id, FORK);
 	pthread_mutex_lock(&philo->next->fork_lock);
 	if (philo->data->stop_prog)
-		return (pthread_mutex_unlock(&philo->fork_lock),
-			pthread_mutex_unlock(&philo->next->fork_lock), 0);
+		return (0);
 	print_action(philo->data, get_time(philo->data->start_time),
 		philo->id, FORK);
 	return (1);
@@ -47,8 +48,6 @@ void	eat_handler(t_philo *philo)
 {
 	useconds_t	time;
 
-	if (philo->data->stop_prog)
-		return ;
 	if (!get_fork(philo))
 		return ;
 	time = get_time(philo->data->start_time);

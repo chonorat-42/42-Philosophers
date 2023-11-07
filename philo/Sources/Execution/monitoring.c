@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 15:04:01 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:55:33 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,14 @@ static void	*monitoring(void *arg)
 {
 	t_data	*data;
 	t_philo	*philo;
-	size_t	index;
 
-	index = 1;
 	data = (t_data *)arg;
 	philo = data->philo;
 	while (!data->stop_prog)
 	{
 		if (check_death(data, philo))
-			continue ;
+			break ;
+		philo = philo->next;
 	}
 	return (NULL);
 }
