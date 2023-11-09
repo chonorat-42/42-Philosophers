@@ -6,19 +6,39 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 13:54:53 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:47:39 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static useconds_t	get_last_meal(t_philo *philo)
+{
+	useconds_t	last_meal;
+
+	pthread_mutex_lock(&philo->lastm_lock);
+	last_meal = philo->last_meal;
+	pthread_mutex_unlock(&philo->lastm_lock);
+	return (last_meal);
+}
+
+static int	get_state(t_philo *philo)
+{
+	int	state;
+
+	pthread_mutex_lock(&philo->state_lock);
+	state = philo->state;
+	pthread_mutex_unlock(&philo->state_lock);
+	return (state);
+}
 
 static int	check_death(t_data *data, t_philo *philo)
 {
 	useconds_t	time;
 
 	time = get_time(data->start_time);
-	if ((time - philo->last_meal) >= data->t_death && philo->state != EATING
-			&& !end_prog(data))
+	if ((time - get_last_meal(philo)) >= data->t_death
+		&& get_state(philo) != EATING && !end_prog(data))
 	{
 		pthread_mutex_lock(&data->stop_lock);
 		data->stop_prog = 1;
@@ -46,6 +66,16 @@ static void	*death_monitoring(void *arg)
 	return (NULL);
 }
 
+static size_t	get_meal_count(t_philo *philo)
+{
+	size_t	meal_count;
+
+	pthread_mutex_lock(&philo->mcount_lock);
+	meal_count = philo->meal_count;
+	pthread_mutex_unlock(&philo->mcount_lock);
+	return (meal_count);
+}
+
 static int	check_meal(t_data *data, t_philo *philo, size_t *has_eaten)
 {
 	size_t	index;
@@ -53,7 +83,7 @@ static int	check_meal(t_data *data, t_philo *philo, size_t *has_eaten)
 	index = 1;
 	while (index <= data->philo_nbr)
 	{
-		if (philo->meal_count >= data->min_meal)
+		if (get_meal_count(philo) >= data->min_meal)
 			(*has_eaten)++;
 		if (*has_eaten == data->philo_nbr)
 		{

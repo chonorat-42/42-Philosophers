@@ -6,11 +6,18 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 13:42:40 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:46:27 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	update_state(t_philo *philo, int state)
+{
+	pthread_mutex_lock(&philo->state_lock);
+	philo->state = state;
+	pthread_mutex_unlock(&philo->state_lock);
+}
 
 static void	*philo_handler(void *arg)
 {
@@ -19,7 +26,7 @@ static void	*philo_handler(void *arg)
 	philo = (t_philo *)arg;
 	print_action(philo->data, get_time(philo->data->start_time),
 		philo->id, THINKING);
-	philo->state = THINKING;
+	update_state(philo, THINKING);
 	if (!philo->group)
 		ft_usleep(philo->data->t_eat - 10);
 	while (!end_prog(philo->data))
@@ -27,16 +34,14 @@ static void	*philo_handler(void *arg)
 		if (philo->group++)
 		{
 			eat_handler(philo);
-			if (end_prog(philo->data))
-				break ;
 			if (philo->data->philo_nbr < 2)
 				break ;
-			philo->state = THINKING;
+			if (end_prog(philo->data))
+				break ;
+			update_state(philo, THINKING);
 			print_action(philo->data, get_time(philo->data->start_time),
 			philo->id, THINKING);
 		}
-		if (end_prog(philo->data))
-				break ;
 	}
 	return (NULL);
 }

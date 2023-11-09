@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 22:38:10 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:32:51 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void	init_mutex(t_data *data)
 	while (philo && index <= data->philo_nbr)
 	{
 		pthread_mutex_init(&philo->fork_lock, NULL);
-		pthread_mutex_init(&philo->meal_lock, NULL);
+		pthread_mutex_init(&philo->state_lock, NULL);
 		pthread_mutex_init(&philo->mcount_lock, NULL);
+		pthread_mutex_init(&philo->lastm_lock, NULL);
 		philo = philo->next;
 		index++;
 	}
