@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/08 00:10:20 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:34:31 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_death(t_data *data, t_philo *philo)
 
 	time = get_time(data->start_time);
 	if ((time - philo->last_meal) >= data->t_death && philo->state != EATING
-			&& end_prog(data))
+			&& !end_prog(data))
 	{
 		pthread_mutex_lock(&data->stop_lock);
 		data->stop_prog = 1;

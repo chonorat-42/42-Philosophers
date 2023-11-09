@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/07 23:29:47 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:42:40 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	*philo_handler(void *arg)
 				break ;
 			if (philo->data->philo_nbr < 2)
 				break ;
+			philo->state = THINKING;
 			print_action(philo->data, get_time(philo->data->start_time),
 			philo->id, THINKING);
-			philo->state = THINKING;
 		}
 		if (end_prog(philo->data))
 				break ;
