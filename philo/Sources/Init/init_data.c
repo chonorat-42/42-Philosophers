@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 14:59:54 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:49:36 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	init_data(t_data *data)
 	data->start_time = init_time();
 	if (!data->start_time)
 		return (0);
+	data->min_meal = 0;
 	data->stop_prog = 0;
 	data->philo_nbr = 0;
 	data->t_death = 0;

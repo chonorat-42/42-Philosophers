@@ -20,7 +20,7 @@ _END = \033[0m
 _BOLD = \033[1m
 
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -IIncludes
+CFLAGS = -Wall -Wextra -Werror -IIncludes -ggdb3
 RM = @rm -rf
 CC = @cc
 DIR = @mkdir -p
