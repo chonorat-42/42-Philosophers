@@ -6,23 +6,11 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 14:49:15 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:56:56 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	end_prog(t_data *data)
-{
-	int	end;
-
-	pthread_mutex_lock(&data->stop_lock);
-	end = data->stop_prog;
-	pthread_mutex_unlock(&data->stop_lock);
-	if (end)
-		return (1);
-	return (0);
-}
 
 static void	sleep_after_meal(t_philo *philo)
 {
@@ -34,9 +22,9 @@ static void	sleep_after_meal(t_philo *philo)
 	pthread_mutex_lock(&philo->mcount_lock);
 	philo->meal_count++;
 	pthread_mutex_unlock(&philo->mcount_lock);
-	update_state(philo, SLEEPING);
 	if (end_prog(philo->data))
 		return ;
+	update_state(philo, SLEEPING);
 	print_action(philo->data, time, philo->id, SLEEPING);
 	ft_usleep(philo->data->t_sleep);
 }
@@ -68,18 +56,18 @@ void	eat_handler(t_philo *philo)
 	if (!get_fork(philo))
 		return ;
 	time = get_time(philo->data->start_time);
-	update_state(philo, EATING);
 	if (end_prog(philo->data))
 	{
 		pthread_mutex_unlock(&philo->fork_lock);
 		pthread_mutex_unlock(&philo->next->fork_lock);
 		return ;
 	}
+	update_state(philo, EATING);
 	print_action(philo->data, time,
 		philo->id, EATING);
-	ft_usleep(philo->data->t_eat);
 	pthread_mutex_lock(&philo->lastm_lock);
 	philo->last_meal = get_time(philo->data->start_time);
 	pthread_mutex_unlock(&philo->lastm_lock);
+	ft_usleep(philo->data->t_eat);
 	sleep_after_meal(philo);
 }
