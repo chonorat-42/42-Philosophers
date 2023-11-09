@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 14:46:27 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:00:42 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	*philo_handler(void *arg)
 				break ;
 			update_state(philo, THINKING);
 			print_action(philo->data, get_time(philo->data->start_time),
-			philo->id, THINKING);
+				philo->id, THINKING);
 		}
 	}
 	return (NULL);

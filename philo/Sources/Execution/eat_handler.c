@@ -6,23 +6,11 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 14:49:15 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:08:32 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	end_prog(t_data *data)
-{
-	int	end;
-
-	pthread_mutex_lock(&data->stop_lock);
-	end = data->stop_prog;
-	pthread_mutex_unlock(&data->stop_lock);
-	if (end)
-		return (1);
-	return (0);
-}
 
 static void	sleep_after_meal(t_philo *philo)
 {

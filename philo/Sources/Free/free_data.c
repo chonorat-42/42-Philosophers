@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:16:35 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 14:33:08 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:00:17 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	free_philo(t_philo **philo, size_t philo_nbr)
 {
 	t_philo	*temp;
-	t_philo *next;
+	t_philo	*next;
 	size_t	index;
 
 	index = 0;

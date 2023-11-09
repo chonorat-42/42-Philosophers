@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 14:48:01 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:06:14 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t		thread;
 	size_t			id;
@@ -50,7 +50,7 @@ typedef struct	s_philo
 	struct s_philo	*next;
 }					t_philo;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int				stop_prog;
 	pthread_mutex_t	stop_lock;
@@ -93,6 +93,9 @@ int			ft_putstr_fd(char *s, int fd);
 void		ft_usleep(useconds_t sleep);
 int			end_prog(t_data *data);
 void		update_state(t_philo *philo, int state);
+size_t		get_meal_count(t_philo *philo);
+useconds_t	get_last_meal(t_philo *philo);
+int			get_state(t_philo *philo);
 
 //FREE
 void		free_data(t_data *data);
