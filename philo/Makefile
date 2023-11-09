@@ -88,4 +88,4 @@ norminette:
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re norminette
