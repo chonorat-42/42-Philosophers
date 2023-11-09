@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 13:34:31 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:54:53 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	*meal_monitoring(void *arg)
 
 	data = (t_data *)arg;
 	philo = data->philo;
-	while (!end_prog(data))
+	while (!end_prog(data) && data->min_meal > 0)
 	{
 		has_eaten = 0;
 		if (check_meal(data, philo, &has_eaten))
