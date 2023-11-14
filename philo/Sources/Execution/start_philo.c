@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:00:42 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:37:54 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	start_philo(t_data *data)
 	{
 		if (pthread_create(&philo->thread, NULL, philo_handler, philo))
 			return (0);
+		usleep(1);
 		philo = philo->next;
 		index++;
 	}

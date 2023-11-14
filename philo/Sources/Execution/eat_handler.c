@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:16:26 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:56:56 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:34:37 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	eat_handler(t_philo *philo)
 
 	if (!get_fork(philo))
 		return ;
-	time = get_time(philo->data->start_time);
+	philo->last_meal = get_time(philo->data->start_time);
 	if (end_prog(philo->data))
 	{
 		pthread_mutex_unlock(&philo->fork_lock);
@@ -63,10 +63,10 @@ void	eat_handler(t_philo *philo)
 		return ;
 	}
 	update_state(philo, EATING);
+	time = get_time(philo->data->start_time);
 	print_action(philo->data, time,
 		philo->id, EATING);
 	pthread_mutex_lock(&philo->lastm_lock);
-	philo->last_meal = get_time(philo->data->start_time);
 	pthread_mutex_unlock(&philo->lastm_lock);
 	ft_usleep(philo->data->t_eat);
 	sleep_after_meal(philo);

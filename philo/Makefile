@@ -57,7 +57,7 @@ Objects/%.o: Sources/%.c Makefile $(HEADER)
 	$(DIR) Objects Objects/Utils Objects/Parsing Objects/Init
 	$(DIR) Objects/Free Objects/Print Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -pthread -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
 
