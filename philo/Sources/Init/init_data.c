@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:46:45 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:49:36 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:54:54 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_philo(t_data *data, t_philo **philo, int id)
 	(*philo)->id = id;
 	(*philo)->group = id % 2;
 	(*philo)->state = 0;
+	(*philo)->fork = 1;
 	(*philo)->meal_count = 0;
 	(*philo)->last_meal = 0;
 	(*philo)->data = data;

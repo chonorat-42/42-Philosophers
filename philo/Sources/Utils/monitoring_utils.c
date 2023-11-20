@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:03:24 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:08:43 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:04:59 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	end_prog(t_data *data)
 	pthread_mutex_lock(&data->stop_lock);
 	end = data->stop_prog;
 	pthread_mutex_unlock(&data->stop_lock);
-	if (end)
-		return (1);
-	return (0);
+	return (end);
 }
 
 size_t	get_meal_count(t_philo *philo)

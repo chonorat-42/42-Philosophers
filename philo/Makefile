@@ -37,7 +37,7 @@ FILES = philo\
 		Parsing/get_arg\
 		Print/show_error\
 		Print/print_action\
-		Utils/ft_atoi\
+		Utils/sizet_atoi\
 		Utils/ft_putstr_fd\
 		Utils/ft_usleep\
 		Utils/monitoring_utils\
@@ -50,14 +50,14 @@ $(NAME): $(OBJS)
 	$(NORM)
 	$(PRINT) "${_BOLD}Norminette done.${_END}"
 	$(PRINT) "\n${_YELLOW}Making $(NAME)...${_END}"
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -pthread -o $(NAME)
 	$(PRINT) "${_BOLD}${_GREEN}$(NAME) done.\a${_END}"
 
 Objects/%.o: Sources/%.c Makefile $(HEADER)
 	$(DIR) Objects Objects/Utils Objects/Parsing Objects/Init
 	$(DIR) Objects/Free Objects/Print Objects/Execution
 	$(PRINT) "Compiling ${_BOLD}$<$(_END)..."
-	$(CC) -pthread -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
 

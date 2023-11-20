@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:46:08 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:03:58 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:10:02 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_death(t_data *data, t_philo *philo)
 		pthread_mutex_lock(&data->stop_lock);
 		data->stop_prog = 1;
 		pthread_mutex_unlock(&data->stop_lock);
-		print_action(data, time, philo->id, DEATH);
+		print_action(data, philo->id, DEATH);
 		return (1);
 	}
 	return (0);
@@ -39,9 +39,9 @@ static void	*death_monitoring(void *arg)
 	while (!end_prog(data))
 	{
 		if (check_death(data, philo))
-			break ;
+			return (NULL);
 		philo = philo->next;
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }
@@ -64,7 +64,7 @@ static int	check_meal(t_data *data, t_philo *philo, size_t *has_eaten)
 		}
 		philo = philo->next;
 		index++;
-		usleep(1000);
+		usleep(100);
 	}
 	return (0);
 }

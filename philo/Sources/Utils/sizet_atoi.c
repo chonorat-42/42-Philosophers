@@ -26,11 +26,11 @@ static int	check_number(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+size_t	sizet_atoi(const char *str)
 {
-	int	value;
-	int	index;
-	int	sign;
+	size_t	value;
+	int		index;
+	int		sign;
 
 	value = 0;
 	index = 0;

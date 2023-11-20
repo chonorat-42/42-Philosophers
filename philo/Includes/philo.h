@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:22:10 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:31:56 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:25:12 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo
 	pthread_mutex_t	mcount_lock;
 	useconds_t		last_meal;
 	pthread_mutex_t	lastm_lock;
+	int				fork;
 	pthread_mutex_t	fork_lock;
 	struct s_data	*data;
 	struct s_philo	*prev;
@@ -84,13 +85,13 @@ void		eat_handler(t_philo *philo);
 void		join_philo(t_data *data);
 
 //PRINT
-void		print_action(t_data *data, useconds_t time, size_t id, int action);
+void		print_action(t_data *data, size_t id, int action);
 void		show_error(int type, int error);
 
 //UTILS
-int			ft_atoi(const char *str);
+size_t		sizet_atoi(const char *str);
 int			ft_putstr_fd(char *s, int fd);
-void		ft_usleep(useconds_t sleep);
+void		ft_usleep(t_data *data, useconds_t sleep);
 int			end_prog(t_data *data);
 void		update_state(t_philo *philo, int state);
 size_t		get_meal_count(t_philo *philo);

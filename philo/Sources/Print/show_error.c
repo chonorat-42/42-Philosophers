@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 13:24:59 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/09 15:01:53 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:40:32 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	nbr_error(int error)
 		ft_putstr_fd("Time cannot be set under 60ms.\n", 2);
 	else if (error == 3)
 		ft_putstr_fd("Value must be over 0.\n", 2);
+	else if (error == 4)
+		ft_putstr_fd("INT Overflow.\n", 2);
 }
 
 void	show_error(int type, int error)

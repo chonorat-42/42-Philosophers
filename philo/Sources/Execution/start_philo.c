@@ -6,7 +6,7 @@
 /*   By: chonorat <chonorat@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:53:50 by chonorat          #+#    #+#             */
-/*   Updated: 2023/11/14 16:37:54 by chonorat         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:26:24 by chonorat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ static void	*philo_handler(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	print_action(philo->data, get_time(philo->data->start_time),
-		philo->id, THINKING);
+	print_action(philo->data, philo->id, THINKING);
 	update_state(philo, THINKING);
 	if (!philo->group)
-		ft_usleep(philo->data->t_eat - 10);
+		ft_usleep(philo->data, philo->data->t_eat - 10);
 	while (!end_prog(philo->data))
 	{
 		if (philo->group++)
@@ -39,8 +38,7 @@ static void	*philo_handler(void *arg)
 			if (end_prog(philo->data))
 				break ;
 			update_state(philo, THINKING);
-			print_action(philo->data, get_time(philo->data->start_time),
-				philo->id, THINKING);
+			print_action(philo->data, philo->id, THINKING);
 		}
 	}
 	return (NULL);
@@ -57,7 +55,6 @@ int	start_philo(t_data *data)
 	{
 		if (pthread_create(&philo->thread, NULL, philo_handler, philo))
 			return (0);
-		usleep(1);
 		philo = philo->next;
 		index++;
 	}
